@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <script src="https://kit.fontawesome.com/db10ff0428.js" crossorigin="anonymous"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            background-color: black;
+            border: none;
+            color: white;
+            width: 100%;
+        }
+         /* --------NAVBAR---------- */
+         .navbar ul{
+            width: 20%;
+            display: flex;
+            position: fixed;
+            align-items: center;
+        }
+        .navbar ul, nav ul li{
+            width: 185%;
+            height: 10%;
+            top: 50%;
+        }
+        .navbar ul{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar ul li{
+            list-style: none;
+            margin-bottom: 40px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: end;
+        }
+        .navbar ul li a{
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
+        text-decoration: none;
+        display: flex;
+        justify-content: end;
+        gap: 15px;
+        width: 100%;
+        height: 100%;
+        padding: 0 15px;
+        align-items: center;
+        border-radius: 50px;
+        overflow: hidden;
+        transition: width 300ms, background-color 300ms;
+        }
+        .navbar ul li a span, nav ul li a i{
+        font-size: 18px;
+        }
+        .navbar ul li a:hover{
+        width: 100%;
+        background-color: orange;
+        }
+
+        .navbar ul li{
+            position: relative;
+            list-style: none;
+            margin: 20px;
+            width: 50px;
+            height: 50px;
+            /* background: rgb(59, 56, 56); */
+            border-radius: 40px;
+            cursor: pointer;
+            display:flex;
+            justify-content: end;
+            align-items: center;
+            transition: 0.5s;
+        }
+
+        .navbar ul li:hover{
+            width: 7%;
+        }
+
+        ul li::before{
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 70px;
+            background: orange;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        ul li:hover::before{
+            opacity: 1;
+        }
+        ul li::after{
+            content: '';
+            padding-top: 150px;
+            width: 8%;
+            height: 100%;
+            border-radius: 60px;
+            transition: 0.5s;
+            filter: blur(10px);
+            z-index: -1;
+            opacity: 0;
+        }
+        ul li:hover::after{
+            opacity: 0.5;
+        }
+        ul li i {
+            padding-left: 3px;
+            font-size: 20px;
+            color: white;
+            transition: 0.5s;
+            transition-delay: 0.25s;
+        }
+        ul li:hover i {
+            transform: scale(1);
+            color: white;
+            transition-delay: 0s;
+        }
+
+        ul li a span{
+            position: absolute;
+            padding-top:0;
+        }
+
+        ul li a .words{
+            text-align: center;
+            position: absolute;
+            padding-right: 28px;
+            justify-content: center;
+            display:flex;
+            flex-wrap: wrap;
+            color: white;
+            font-size: 7px;
+            font-family: sans-serif;
+            text-transform: uppercase;
+            text-decoration-thickness: 1px;
+            transform: scale(0);
+            transition: 0.5s;
+            transition-delay: 0s;
+        }
+        ul li:hover .words{
+            text-align: center;
+            justify-content: center;
+            flex-wrap:nowrap;
+            transform: scale(1);
+            transition-delay: 0.25s;
+        } 
+         /* --------HEADING------ */
+        section .about{
+            font-size: 40px;
+            font-weight: 900;
+            font-family: sans-serif;
+            text-transform: uppercase;
+        }
+        .about span{
+            color: orange;
+        }
+        section .about{
+            text-align: center;
+        }
+        .about{
+            width: 100%;
+            position: relative;
+        }
+
+        .aboutme{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 900;
+            font-size: 48px;
+        }
+
+        .resume{
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 90px;
+            font-weight: 900;
+        }
+/* -----------------BLOG---------------- */
+
+        .blogcontainer{
+            content: '';
+            display:table;
+            clear: both;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 90px;
+            gap: 20px;
+            margin-top: 60px;
+            float: left;
+            font-family: sans-serif;
+        }
+        .blogcontainer .blogposts{
+            border: 2px solid black;
+            border-radius: 10px;
+            width: 27.66%;
+            height: 0%;
+            background-color: rgb(41, 41, 41);
+            
+        }
+        .blogcontainer .blogposts .prepost a img{
+            width: 100%;
+            cursor: pointer;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom: 5px solid orange;
+            width: 100%;
+            transition: transform 400ms;
+        }
+        .blogcontainer .blogposts .prepost a img:hover{
+            transform: scale(1.05);
+        }
+        .blogcontainer .blogposts .postpost{
+            margin: 20px;   
+        }
+        .blogcontainer .blogposts .postpost .postheading a{
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 20px;
+            padding-bottom: 15px;
+        }
+        .blogcontainer .blogposts .postpost .postheading a:hover{
+            color: orange;
+        }
+        .blogcontainer .blogposts .postpost .postwriting p{
+            padding-top: 15px;
+            font-size: 16px;
+        }
+        .pages .pageNavigation{
+           margin-top: 60px;
+        }
+        .menu{
+            display: none;
+        }
+
+        /* ---------------CSS SMALL DEVICES------------- */ 
+        @media (max-width:991px){
+            .navbar{
+                display: none;
+            }
+            section .about{
+                display: none;
+                padding-top: 50px;
+            }
+            .blogcontainer{
+                display: block;
+                /* width: 100%; */
+                margin: 20px;
+            }
+            .blogcontainer .blogposts{
+                width: 80%;
+                margin: 25px;
+            }
+            .menu{
+                background: orange;
+                display: flex;
+                position: fixed;
+                width: 100%;
+                flex-direction: row;
+            }
+            .menu div{
+                font-size: 20px;
+                cursor: pointer;
+                text-decoration: none;
+                width: 20%;
+                padding-left: 5%;
+            }
+            .menu div a{
+                text-decoration: none;
+                gap: 20px;
+                width: 30%;
+                justify-content: center;
+                color: black;
+                font-weight: 500;
+            }
+            .menu div a p:hover{
+                color: #fff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="secondmenu">
+            <div class="menu">
+                <div>
+                     <a href="./index.html"><p>HOME</p></a>
+                </div>
+                <div>
+                     <a href="./about.html"><p>ABOUT</p></a>
+                </div>
+                <div>
+                     <a href="./portfolio.html"><p>PORTFOLIO</p></a>
+                </div>
+                <div>
+                     <a href="./contact.html"><p>CONTACT</p></a>
+                </div>
+                <div>
+                    <a href="#" style="color: red;"><p>BLOG</p></a>
+                </div>
+            </div>
+        </div>
+        <section class="abouthead">
+            <div class="about">
+                <h1 class="resume">posts</h1>
+                <h1 class="aboutme">My <span>Blog</span></h1>
+            </div>
+         </section>
+         <div class="navbar">
+            <ul>
+                <li>
+                    <a href="./index.html"><span class="words">Home</span><i class="fa-sharp fa-solid fa-house"></i></a>
+                </li>
+                <li>
+                    <a href="./about.html"><span class="words">About</span><i class="fa-sharp fa-solid fa-user"></i></a>
+                </li>
+                <li>
+                    <a href="./portfolio.html" ><span class="words">Portfolio</span><i class="fa-sharp fa-solid fa-folder-open"></i></a>
+                </li>
+                <li>
+                    <a href="./contact.html"><span class="words">Contact</span><i class="fa-sharp fa-solid fa-phone"></i></a>
+                </li>
+                <li>
+                    <a href="#" style="background-color: orange;"><span class="words">Blog</span><i class="fa-sharp fa-solid fa-comments"></i></a>
+                </li>
+            </ul>
+         </div>
+<!-- ----------------BLOGS----------------- -->
+        <div class="blogcontainer">
+            <div class="blogposts">
+                <article class="postblog">
+                    <div class="prepost">
+                        <a href="#">
+                            <img src="Images/B1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="postpost">
+                        <div class="postheading">
+                            <h3><a href="#">How to Own Your Audience by Creating an Email List</a></h3>
+                        </div>
+                        <div class="postwriting">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem praesentium provident a est autem ullam!</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blogposts">
+                <article class="postblog">
+                    <div class="prepost">
+                        <a href="#">
+                            <img src="Images/B2.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="postpost">
+                        <div class="postheading">
+                            <h3><a href="#">Top 10 Toolkits for Deep Learning in 2020</a></h3>
+                        </div>
+                        <div class="postwriting">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem praesentium provident a est autem ullam!</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blogposts">
+                <article class="postblog">
+                    <div class="prepost">
+                        <a href="#">
+                            <img src="Images/B3.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="postpost">
+                        <div class="postheading">
+                            <h3><a href="#">Everything You Need to Know About Web Accessibility</a></h3>
+                        </div>
+                        <div class="postwriting">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem praesentium provident a est autem ullam!</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blogposts">
+                <article class="postblog">
+                    <div class="prepost">
+                        <a href="#">
+                            <img src="Images/B4.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="postpost">
+                        <div class="postheading">
+                            <h3><a href="#">How to Inject Humor & Comedy Into Your Brand</a></h3>
+                        </div>
+                        <div class="postwriting">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem praesentium provident a est autem ullam!</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blogposts">
+                <article class="postblog">
+                    <div class="prepost">
+                        <a href="#">
+                            <img src="Images/B5.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="postpost">
+                        <div class="postheading">
+                            <h3><a href="#">Women in Web Design: How To Achieve Success</a></h3>
+                        </div>
+                        <div class="postwriting">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem praesentium provident a est autem ullam!</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blogposts">
+                <article class="postblog">
+                    <div class="prepost">
+                        <a href="#">
+                            <img src="Images/B6.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="postpost">
+                        <div class="postheading">
+                            <h3><a href="#">Evergreen versus topical content: An overview</a></h3>
+                        </div>
+                        <div class="postwriting">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem praesentium provident a est autem ullam!</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
